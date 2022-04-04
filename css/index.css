@@ -1,21 +1,21 @@
-.layui-footer{
- text-align: center;
- font-size: 15px;   
+.layui-footer {
+    text-align: center;
+    font-size: 15px;
 }
 
-.layui-icon{
+.layui-icon {
     margin-right: 5px;
 }
 
-.layui-nav-child{
+.layui-nav-child {
     padding-left: 18px;
 }
 
-a{
+a {
     transition: none !important;
 }
 
-.userinfo{
+#userinfo {
     height: 60px;
     line-height: 60px;
     /* text-align: center; */
@@ -24,22 +24,22 @@ a{
     /* font-size: 15px; */
 }
 
-iframe{
+iframe {
     width: 100%;
     height: 100%;
-    background-color: #819ce9;
+    /* background-color: #819ce9; */
 }
 
-.layui-side-scroll .userinfo{
+#userinfo {
     border-bottom: 1px solid #282b33;
 }
 
-.layui-nav-img{
+.layui-nav-img {
     width: 40px;
     height: 40px;
 }
 
-.text-avatar{
+.text-avatar {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -53,13 +53,16 @@ iframe{
     margin-right: 10px;
 }
 
-/* .layui-side{
-    display: none;
-}
-.layui-body{
-    left: 0;
+.layui-body {
+    overflow: hidden;
 }
 
-.layui-layout-left{
+.layui-side {
+    left: -200px;
+}
+
+.layui-body,
+.layui-footer,
+.layui-layout-left {
     left: 0;
-} */
+}

@@ -11,14 +11,15 @@ $(function () {
     })
 
     var layer = layui.layer
-    var data = {
-        username: $('#form_reg [name=username]').val(),
-        password: $('#form_reg [name=password]').val(),
-    }
+
     $('#form_reg').on('submit', function (e) {
         e.preventDefault()
         if ($('#form_reg [name=password]').val() != $('#form_reg [name=repassword]').val()) {
             return layer.msg("密码不一致")
+        }
+        var data = {
+            username: $('#form_reg [name=username]').val(),
+            password: $('#form_reg [name=password]').val(),
         }
         $.post('/api/reguser', data, function (res) {
             if (res.status !== 0) {
@@ -30,18 +31,20 @@ $(function () {
     })
 
     $('#form_login').submit(function (e) {
+        // console.log("sss"+$(this).serialize())
         e.preventDefault()
         $.ajax({
             url: '/api/login',
             method: 'POST',
             data: $(this).serialize(),
+
             success: function (res) {
                 if (res.status !== 0) {
-                    return layer.msg('登录失败')
+                    return layer.msg('登录失败,账号或密码错误')
                 }
                 console.log(res)
                 layer.msg('登录成功')
-                localStorage.setItem('token',res.token)
+                localStorage.setItem('token', res.token)
                 location.href = '/index.html'
             }
         })

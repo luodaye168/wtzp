@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无土栽培</title>
+</head>
+
+<script src="./js/canshu.js"></script>
+<script src="./JS-SDK-master/sdk.js"></script>
+<script src="./js/show.js"></script>
+<link rel="stylesheet" href="./css/index.css">
+
+
+<body>
+
+    <!--侧边栏-->
+    <script src="./js/jquery-2.2.4.min_.js"></script>
+    <div id="cbl"></div>
+    <script>
+        $("#cbl").load("./cbl.html")
+    </script>
+    <!--  -->
+
+    <div id="tubiao">
+        <p id="top"><span>传感器数据</span><span id="live" style="font-size: large;">(加载中)</span></p>
+
+        <div class="tubiao">
+            <div class="shuju_ico" style="background: url(./images/wendu.png);background-size: cover;">
+            </div>
+            <p class="tubiaoyou">温度</p>
+            <p class="tubiaoyou"><span id="wendu">**</span>℃</p>
+        </div>
+
+        <div class="tubiao">
+            <div class="shuju_ico" style="background: url(./images/shidu.png);background-size: cover;">
+            </div>
+            <p class="tubiaoyou">湿度</p>
+            <p class="tubiaoyou"><span id="shidu">**</span>%</p>
+        </div>
+
+
+        <div class="tubiao">
+            <div class="shuju_ico" style="background: url(./images/co2.png);background-size: cover;">
+            </div>
+            <p class="tubiaoyou">二氧化碳</p>
+            <p class="tubiaoyou"><span id="co2">***</span>ppm</p>
+        </div>
+
+        <div class="tubiao">
+            <div class="shuju_ico" style="background: url(./images/ph.png);background-size: cover;">
+            </div>
+            <p class="tubiaoyou">PH值</p>
+            <p class="tubiaoyou"><span id="ph">***</span></p>
+        </div>
+
+        <div class="tubiao">
+            <div class="shuju_ico" style="background: url(./images/ec.png);background-size: cover;">
+            </div>
+            <p class="tubiaoyou">EC值</p>
+            <p class="tubiaoyou"><span id="ec">***</span>ms/cm</p>
+        </div>
+
+    </div>
+
+    <!-- <p><span>历史数据</span></p> -->
+    <!-- <script src="./js/CeBianLan.js"></script> -->
+
+</body>
+
+</html>
