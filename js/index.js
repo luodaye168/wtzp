@@ -1,4 +1,5 @@
 $(function () {
+    
     getUserInfo()
 })
 
@@ -40,9 +41,9 @@ $('#icon-turn').click(function () {
     $(this).toggleClass("layui-icon-spread-left")
     if ($(this).hasClass("layui-icon-shrink-right")) {
         $('.layui-side').css({ 'left': '0', 'transition': 'left 0.5s' })
-        $('.layui-body').css({ 'left': '200px', 'transition': 'left 0.5s' })
+        // $('.layui-body').css({ 'left': '200px', 'transition': 'left 0.5s' })
         $('.layui-layout-left').css({ 'left': '200px', 'transition': 'left 0.5s' })
-        $('.layui-footer').css({ 'left': '200px', 'transition': 'left 0.5s' })
+        // $('.layui-footer').css({ 'left': '200px', 'transition': 'left 0.5s' })
     }
     else {
         $('.layui-side').css({ 'left': '-200px', 'transition': 'left 0.5s' })

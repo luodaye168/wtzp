@@ -7,32 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="./css/index-body.css">
+    <script src="./js/sdk.js"></script>
 </head>
 
 <body>
-    <div class="layui-container">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-xs6">
-                <div class="layui-panel">
-                    <div style="padding: 50px;">一个面板</div>
-                </div>
-            </div>
-            <div class="layui-col-xs6">
-                <div class="layui-panel">
-                    <div style="padding: 50px;">一个面板</div>
-                </div>
-            </div>
-            <div class="layui-col-xs6">
-                <div class="layui-panel">
-                    <div style="padding: 50px;">一个面板</div>
-                </div>
+    <div id="view"></div>
+
+    <!-- 设备列表模板div -->
+    <script id="demo" type="text/html">
+
+        <div id="top">
+            <i class="layui-icon layui-icon-app"></i>
+            <span style="color: rgb(30,159,255);">设备列表</span>
+        </div>
+
+        <div class="layui-container">
+            <div class="layui-row layui-col-space15">
+                {{# layui.each(d.list, function(index, item){ }}
+                    <div class="layui-col-xs6 layui-col-sm4 layui-col-md3 layui-col-lg2 ">
+                        <div class="layui-panel" click-id="{{ item.device_id }}">
+                            <div class="img-box">  <img src="{{ item.img_src }}" alt="加载失败 "></div>
+                            <span id={{ item.device_id }} class="online">加载中</span>
+                            <span class="device_name">{{ item.device_name }}</span>
+                        </div>
+                    </div>
+                {{# online(item.api_key,  item.device_id ) }}
+                {{# setInterval(function() {online(item.api_key,  item.device_id )}, 5000) }}
+                {{# }); }}
             </div>
         </div>
-    </div>
+    {{#  if(d.list.length === 0){ }}
+        <span style='color: rgb(255,87,34);padding: 15px;'>还未添加设备，点击右上角添加设备吧</span>
+    {{#  } }} 
+    </script>
 
     <script src="./layui/layui.js"></script>
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/baseAPI.js"></script>
+    <script src="./js/index-body.js"></script>
 </body>
 
 </html>

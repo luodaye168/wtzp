@@ -29,7 +29,7 @@
     <div id="userinfo-body">
         <!-- <span class="card-header">基本资料</span> -->
         <div class="layui-card">
-            <div id="btn-username" class="layui-card-header">用户名<span class="info" id="username"> 欢迎xxx </span></div>
+            <div id="btn-username" class="layui-card-header">用户名<span class="info" id="username"></span></div>
             <div id="btn-password" class="layui-card-header">密码<span class="info"> ******</span></div>
             <div id="btn-email" class="layui-card-header">邮箱<span class="info" id="email"></span></div>
         </div>
@@ -53,8 +53,8 @@
         <form class="layui-form" id="new-password">
             <div class="layui-form-item">
                 <input type="text" name="old-password" required  lay-verify="required" placeholder="旧密码" autocomplete="off" class="layui-input">
-                <input type="text" name="new-password" required  lay-verify="required" placeholder="新密码" autocomplete="off" class="layui-input">
-                <input type="text" name="renew-password" required  lay-verify="required" placeholder="确认新密码" autocomplete="off" class="layui-input">
+                <input type="password" name="new-password" required  lay-verify="required" placeholder="新密码" autocomplete="off" class="layui-input">
+                <input type="password" name="renew-password" required  lay-verify="required" placeholder="确认新密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-item">
                   <button class="layui-btn layui-btn-primary layui-border-blue layui-btn-fluid  layui-btn-radius" lay-submit lay-filter="formDemo">确认修改</button>

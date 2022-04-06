@@ -11,7 +11,6 @@ function getUserInfo() {
         method: 'GET',
         url: '/my/userinfo',
         success: function (res) {
-            console.log(res)
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败')
             }
@@ -67,13 +66,43 @@ $('#btn-username').click(function () {
             })
         }
     });
-})
-
+}) 
+ 
 $('#btn-password').click(function () {
     layer.open({
         type: 1,
         title: '修改密码',
         content: $('#update-password').html(),
+        success: function (layero, index) {
+            // 监听登录表单提交事件
+            $('#new-password').submit(function (e) {
+                e.preventDefault()
+                if ($('#new-password [name=new-password]').val() != $('#new-password [name=renew-password]').val()) {
+                    return layer.msg("密码不一致")
+                }
+                // 验证旧密码
+                var data = {
+                    username: $('#username').html(),
+                    password: $('#new-password [name=old-password]').val(),
+                }
+                $.post('/api/login', data, function (res) {
+                    if (res.status !== 0) {
+                        return layer.msg("验证失败,旧密码错误")
+                    }
+                    // 验证旧密码成功,更新新密码
+                    var data_up = {
+                        password: $('#new-password [name=new-password]').val(),
+                    }
+                    $.post('/my/userinfo', data_up, function (res) {
+                        if (res.status !== 0) {
+                            return layer.msg("更新失败" + res.message)
+                        }
+                        layer.msg("更新成功")
+                        layer.closeAll('page');
+                    })
+                })
+            })
+        }
     });
 })
 
@@ -86,11 +115,9 @@ $('#btn-email').click(function () {
             // console.log(layero, index);
             $('#new-email').on('submit', function (e) {
                 e.preventDefault()
-                layer.msg('scs')
                 var data = {
                     email: $('#new-email [name=new-email]').val(),
                 }
-                console.log(data)
                 $.post('/my/userinfo', data, function (res) {
                     if (res.status !== 0) {
                         return layer.msg("更新失败" + res.message)

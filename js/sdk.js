@@ -1,13 +1,3 @@
-/**
- * Created with JetBrains PhpStorm.
- * Desc: OneNet JS SDK 使用高风险，仅限实验用
- * Author: limengjun
- * Date: 16-2-26
- * Time: 下午2:27
- * Version: 1.0.0
- * Copyright (c) 2016 中国移动物联网有限公司
- * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
 
 (function(){
     var count = 1;
