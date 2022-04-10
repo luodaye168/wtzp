@@ -58,12 +58,37 @@ iframe {
     overflow: hidden;
 }
 
-.layui-side {
+.layui-side{
     left: -200px;
+}
+.layui-layout-admin .layui-logo{
+    left: -200px;
+
 }
 
 .layui-body,
-.layui-footer,
+
 .layui-layout-left {
     left: 0;
+}
+
+@media screen and (min-width: 768px) {
+
+    /* .layui-footer{
+        left: 0 !important;
+
+    } */
+    .layui-logo {
+        left: 0px !important;
+
+    }
+
+    .layui-side {
+        left: 0 !important;
+    }
+
+    .layui-body {
+        left: 200px !important;
+    }
+
 }

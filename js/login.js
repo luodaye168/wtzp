@@ -1,6 +1,7 @@
 $(function () {
     //点击注册显示注册box,隐藏登录box
     $('#link_reg').on('click', function () {
+        return layer.msg('暂不开放注册功能')
         $('.login-box').hide()
         $('.reg-box').show()
     })
@@ -56,3 +57,4 @@ $(function () {
         })
     })
 })
+

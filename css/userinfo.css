@@ -26,7 +26,9 @@ body {
     margin: 0 15px;
     /* font-size: 20px; */
 }
-
+.layui-card{
+    border-radius: 10px;
+}
 .layui-layout-admin .layui-header {
     background: #1E9FFF;
     min-width: 300px;

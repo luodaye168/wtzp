@@ -40,7 +40,7 @@ $('#btnLogout').click(function () {
 })
 
 $('#return').click(function () {
-    location.href = '../'
+    window.parent.location.href = '../'
 })
 
 $('#btn-username').click(function () {

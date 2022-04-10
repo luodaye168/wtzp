@@ -1,5 +1,5 @@
 $(function () {
-    
+
     getUserInfo()
 })
 
@@ -31,25 +31,30 @@ function renderAvatar(user) {
     }
 }
 
-$('#userinfo').click(function(){
-    location.href='./user/user_info.html'
+$('#userinfo').click(function () {
+    location.href = './user/user_info.html'
 })
 
 
 $('#icon-turn').click(function () {
-    $(this).toggleClass("layui-icon-shrink-right ")
-    $(this).toggleClass("layui-icon-spread-left")
-    if ($(this).hasClass("layui-icon-shrink-right")) {
-        $('.layui-side').css({ 'left': '0', 'transition': 'left 0.5s' })
-        // $('.layui-body').css({ 'left': '200px', 'transition': 'left 0.5s' })
-        $('.layui-layout-left').css({ 'left': '200px', 'transition': 'left 0.5s' })
-        // $('.layui-footer').css({ 'left': '200px', 'transition': 'left 0.5s' })
-    }
-    else {
-        $('.layui-side').css({ 'left': '-200px', 'transition': 'left 0.5s' })
-        $('.layui-body').css({ 'left': '0', 'transition': 'left 0.5s' })
-        $('.layui-layout-left').css({ 'left': '0', 'transition': 'left 0.5s' })
-        $('.layui-footer').css({ 'left': '0', 'transition': 'left 0.5s' })
+    if ($('.layui-hide-sm').css('display') == 'inline-block') {
+
+        $(this).toggleClass("layui-icon-shrink-right ")
+        $(this).toggleClass("layui-icon-spread-left")
+        if ($(this).hasClass("layui-icon-shrink-right")) {
+            $('.layui-side').css({ 'left': '0', 'transition': 'left 0.5s' })
+            $('.layui-logo').css({ 'left': '0', 'transition': 'left 0.5s' })
+            // $('.layui-body').css({ 'left': '200px', 'transition': 'left 0.5s' })
+            $('.layui-layout-left').css({ 'left': '200px', 'transition': 'left 0.5s' })
+            // $('.layui-footer').css({ 'left': '200px', 'transition': 'left 0.5s' })
+        }
+        else {
+            $('.layui-side').css({ 'left': '-200px', 'transition': 'left 0.5s' })
+            $('.layui-logo').css({ 'left': '-200px', 'transition': 'left 0.5s' })
+            $('.layui-body').css({ 'left': '0', 'transition': 'left 0.5s' })
+            $('.layui-layout-left').css({ 'left': '0', 'transition': 'left 0.5s' })
+            // $('.layui-footer').css({ 'left': '0', 'transition': 'left 0.5s' })
+        }
     }
 })
 
@@ -87,10 +92,18 @@ var IframeOnClick = {
     }
 };
 IframeOnClick.track(document.getElementById("iFrame"), function () {
-    $("#icon-turn").addClass("layui-icon-spread-left")
-    $("#icon-turn").removeClass("layui-icon-shrink-right")
-    $('.layui-side').css({ 'left': '-200px', 'transition': 'left 0.5s' })
-    $('.layui-body').css({ 'left': '0', 'transition': 'left 0.5s' })
-    $('.layui-layout-left').css({ 'left': '0', 'transition': 'left 0.5s' })
-    $('.layui-footer').css({ 'left': '0', 'transition': 'left 0.5s' })
+    if ($('.layui-hide-sm').css('display') == 'inline-block') {
+        $("#icon-turn").addClass("layui-icon-spread-left")
+        $("#icon-turn").removeClass("layui-icon-shrink-right")
+        $('.layui-side').css({ 'left': '-200px', 'transition': 'left 0.5s' })
+        $('.layui-logo').css({ 'left': '-200px', 'transition': 'left 0.5s' })
+
+        $('.layui-body').css({ 'left': '0', 'transition': 'left 0.5s' })
+        $('.layui-layout-left').css({ 'left': '0', 'transition': 'left 0.5s' })
+        // $('.layui-footer').css({ 'left': '0', 'transition': 'left 0.5s' })
+    }
 });
+// 开发中
+$('.layui-icon-add-circle').click(function(){
+    layer.msg('开发中...')
+})

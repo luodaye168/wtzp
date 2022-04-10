@@ -8,9 +8,14 @@
 }
 
 .layui-panel {
+    position: relative;
     border-radius: 10px;
     max-width: 250px;
     height: 100px;
+}
+
+.layui-panel:hover{
+    transform: scale(1.1); 
 }
 
 i{
@@ -36,17 +41,14 @@ i{
 }
 
 .img-box {
-    position: fixed;
+    position: absolute;
     margin-top: 5px;
     margin-left: 10px;
-    border-radius: 10px;
-    background-color: rgb(135, 236, 159);
-    /* width: 80px;
-    height: 60px; */
+    /* border-radius: 10px; */
+    /* background-color: rgb(135, 236, 159); */
 }
 
 img {
-    position: fixed;
     border-radius: 10px;
     max-width: 80px;
     max-height: 70px;

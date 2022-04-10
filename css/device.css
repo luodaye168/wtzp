@@ -1,0 +1,104 @@
+body {
+    background-color: rgb(242, 242, 242);
+    background-image: url(/images/device_bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    padding: 15px;
+    color: #fff;
+    z-index: -1;
+    /* font-family:"宋体" */
+}
+
+/* 兼容苹果固定背景图片 */
+body::before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(/images/device_bg.jpg) no-repeat;
+    background-size: 100% auto;
+}
+
+#top-text {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    /* line-height: 30px; */
+    padding-top: 15px;
+    /* color: #fff; */
+}
+
+.layui-layout-left {
+    left: 0;
+}
+
+.layui-layout-admin .layui-header {
+    background: none;
+    /* background-image: linear-gradient(-20deg,rgb(101, 141, 193),rgb(152, 217, 246)); */
+    min-width: 320px;
+}
+
+.body {
+    /* position: relative; */
+    margin: 60px auto;
+    max-width: 480px;
+    min-width: 320px;
+    font-size: 16px;
+    /* background: linear-gradient(180deg,#5ba7e4 0,#84baf1 73%,#f0f2f5 100%); */
+}
+
+/* 卡片头部的颜色 */
+.layui-card-header {
+    /* color: rgb(30, 159, 255); */
+}
+
+.layui-panel {
+    background-color: rgba(12, 12, 12, 0.1);
+    border-style: none;
+    color: #fff;
+    font-size: 15px;
+}
+
+.layui-card {
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 30px !important;
+    background-color: rgba(12, 12, 12, 0.1);
+    /* opacity: 0.5; */
+
+}
+
+.layui-icon-log,
+.layui-icon-next {
+    float: right;
+}
+
+.layui-form-label {
+    text-align: left;
+    width: auto;
+}
+
+.layui-input-block {
+    float: right;
+}
+
+.layui-form-item {
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+/* .layui-form-item input{
+    background-color: red;
+} */
+
+.layui-panel>div {
+    /* background-color: red; */
+    padding: 15px !important;
+}
+
+p {
+    text-align: center;
+}
