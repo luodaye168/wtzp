@@ -67,9 +67,13 @@ iframe {
 }
 
 .layui-body,
-
 .layui-layout-left {
     left: 0;
+}
+
+.layui-form-item {
+    padding: 10px 30px;
+    position: relative;
 }
 
 @media screen and (min-width: 768px) {
@@ -91,4 +95,7 @@ iframe {
         left: 200px !important;
     }
 
+}
+.layui-layer-page{
+    min-width: 300px;
 }

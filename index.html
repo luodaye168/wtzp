@@ -24,7 +24,7 @@
             </ul>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
-                    <i class="layui-icon layui-icon-add-circle" style="font-size: 25px;"></i>
+                    <i class="layui-icon layui-icon-add-circle add_device" style="font-size: 25px;"></i>
                 </li>
             </ul>
         </div>
@@ -44,17 +44,27 @@
                     <li class="layui-nav-item"><a href="javascript:;">
                             <i class="layui-icon layui-icon-transfer"></i>设备管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">添加设备</a></dd>
-                            <dd><a href="javascript:;">menu 2</a></dd>
-                            <dd><a href="javascript:;">menu 3</a></dd>
+                            <dd><a class="add_device" href="javascript:;">添加设备</a></dd>
+                            <dd><a href="/edit_device.html" target="fm">编辑设备</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item"><a href="javascript:;">
-                            <i class="layui-icon layui-icon-username"></i>个人中心</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="/user/user_info.html" target="fm">基本资料</a></dd>
-                            <dd><a href="javascript:;">修改头像</a></dd>
-                        </dl>
+
+                    <li class="layui-nav-item">
+                        <a href="/user/user_info.html" target="fm"><i class="layui-icon layui-icon-username"></i>个人中心<i
+                                class="layui-icon layui-icon-right" style="float: right;"></i></a>
+                        <!-- <dl class="layui-nav-child"> -->
+                        <!-- <dd><a href="/user/user_info.html" target="fm">基本资料</a></dd> -->
+                        <!-- <dd><a href="javascript:;">修改头像</a></dd> -->
+                        <!-- </dl> -->
+                    </li>
+
+                    <li class="layui-nav-item">
+                        <a href="/log.html" target="fm"><i class="layui-icon layui-icon-tabs"></i>更新日志<i
+                                class="layui-icon layui-icon-right" style="float: right;"></i></a>
+                        <!-- <dl class="layui-nav-child"> -->
+                        <!-- <dd><a href="/user/user_info.html" target="fm">基本资料</a></dd> -->
+                        <!-- <dd><a href="javascript:;">修改头像</a></dd> -->
+                        <!-- </dl> -->
                     </li>
                 </ul>
             </div>
@@ -72,16 +82,26 @@
         </div>
 
     </div>
+    <!-- 添加设备表单 -->
+    <script type="text/html" id="add_device_tpl">
+        <form class="layui-form" id="add_device_form">
+            <p style="text-align: center;color: rgb(255,87,34);">api_key和device_id从onenet平台获取</p>
+            <div class="layui-form-item">
+                <input type="text" name="api_key" required  lay-verify="required" placeholder="api_key" autocomplete="off" class="layui-input">
+                <input type="text" name="device_id" required  lay-verify="required" placeholder="device_id" autocomplete="off" class="layui-input">
+                <input type="text" name="device_name" required  lay-verify="required" placeholder="设备名称(自定义)" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-primary layui-border-blue layui-btn-fluid  layui-btn-radius" lay-submit >确认添加</button>
+            </div>
+        </form>
+    </script>
+
     <script src="./layui/layui.js"></script>
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/baseAPI.js"></script>
     <script src="./js/index.js"></script>
     <script>
-
-
-
-
-        //JS 
         layui.use(['element', 'layer', 'util'], function () {
             var element = layui.element
                 , layer = layui.layer

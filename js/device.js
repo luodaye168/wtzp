@@ -5,9 +5,9 @@ layui.use(['layer', 'laytpl', 'form'], function () {
         , laytpl = layui.laytpl
         , form = layui.form
     $(function () {
-        getsensor()
+        get_device_page()
     })
-    function getsensor() {
+    function get_device_page() {
         $.ajax({
             method: 'POST',
             url: '/my/sensor',
@@ -20,6 +20,7 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                 laytpl(getTpl1).render(data, function (html) {
                     view1.innerHTML = html;
                 });
+                // form.render();
             }
         })
 
@@ -35,7 +36,7 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                 laytpl(getTpl).render(data, function (html) {
                     view.innerHTML = html;
                 });
-                var stream_name = ''
+                // var stream_name = ''
                 $('.layui-input-block').click(function (e) {
                     let on_key = $(this).attr('on-key')
                     let off_key = $(this).attr('off-key')
@@ -45,28 +46,151 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                     // console.log(api_key)
                     //判断是手动点击还是模拟点击
                     if (e.hasOwnProperty('originalEvent') && live_flag == true) {
-                        if ($('.layui-form-item input:checkbox[name=' + stream_name + ']+.layui-unselect').hasClass('layui-form-onswitch')) {
-                            console.log(stream_name + "开" + on_key)
-                            send_key = on_key
-                        }
-                        else {
-                            console.log(stream_name + "关" + off_key)
-                            send_key = off_key
-                        }
-                        console.log(send_key)
+                        // if ($('.layui-form-item input:checkbox[name=' + stream_name + ']+.layui-unselect').hasClass('layui-form-onswitch')) {
+                        //     console.log(stream_name + "开" + on_key)
+                        //     send_key = on_key
+                        // }
+                        // else {
+                        //     console.log(stream_name + "关" + off_key)
+                        //     send_key = off_key
+                        // }
+                        $('.layui-form-item input:checkbox[name=' + stream_name + ']+.layui-unselect').hasClass('layui-form-onswitch') ? send_key = on_key : send_key = off_key;
+
+                        console.log('发送:' + send_key)
                         //下发指令
                         api.sendCommand(device_id, send_key).done(function (data) {
-                            if (data.error != 'succ'){
-                                layer.msg(下发指令失败)
+                            data.error != 'succ' ? layer.msg(下发指令失败) : console.log('发送:' + send_key + '成功');
+                        });
+                    }
+                    else if (e.hasOwnProperty('originalEvent') && live_flag == false) {
+                        layer.msg('设备不在线')
+                    }
+                })
+                $('.layui-card-body').on('click', '#btn-add_sensor', function (e) {
+                    // $('#btn-add_sensor').click(function () {
+                    // layer.msg('添加传感器')
+                    if ($('.edit_div').css('display') === 'none') {
+                        layer.open({
+                            type: 1,
+                            title: '添加传感器',
+                            shadeClose: true,
+                            content: $('#add_sensor_tpl').html(),
+                            success: function (layero, index) {
+                                // console.log(layero, index);
+                                $('#add_sensor_form').on('submit', function (e) {
+                                    e.preventDefault()
+                                    // console.log(device_id,stream_name)
+                                    var data = {
+                                        device_id,
+                                        stream_name: $('#add_sensor_form [name=stream_name]').val(),
+                                        sensor_name: $('#add_sensor_form [name=sensor_name]').val(),
+                                        unit: $('#add_sensor_form [name=unit]').val(),
+                                    }
+                                    // console.log(data)
+                                    $.post('/my/insert_sensor', data, function (res) {
+                                        if (res.status !== 0) {
+                                            console.log(res.message)
+                                            return layer.msg(res.message)
+                                        }
+                                        layer.msg("添加传感器成功")
+                                        get_device_page()
+                                        layer.closeAll('page');
+                                    })
+                                })
                             }
                         });
                     }
+                    else {
+                        layer.msg('页面编辑中不可添加')
+                    }
+                })
+
+                $('.layui-card-body').on('click', '#btn-add_switch', function (e) {
+                    // $('#btn-add_switch').click(function () {
+                    // layer.msg('添加开关')
+                    if ($('.edit_div').css('display') === 'none') {
+                        layer.open({
+                            type: 1,
+                            title: '添加开关',
+                            shadeClose: true,
+                            content: $('#add_switch_tpl').html(),
+                            success: function (layero, index) {
+                                // console.log(layero, index);
+                                $('#add_switch_form').on('submit', function (e) {
+                                    e.preventDefault()
+                                    // console.log(device_id,stream_name)
+                                    var data = {
+                                        device_id,
+                                        high_low: $("input[name='pin']:checked").val(),
+                                        on_key: $('#add_switch_form [name=on_key]').val(),
+                                        off_key: $('#add_switch_form [name=off_key]').val(),
+                                        stream_name: $('#add_switch_form [name=stream_name]').val(),
+                                        switch_name: $('#add_switch_form [name=switch_name]').val(),
+                                    }
+                                    console.log(data)
+                                    $.post('/my/insert_switch', data, function (res) {
+                                        if (res.status !== 0) {
+                                            console.log(res.message)
+                                            return layer.msg(res.message)
+                                        }
+                                        layer.msg("添加开关成功")
+                                        get_device_page()
+                                        layer.closeAll('page');
+                                    })
+                                })
+                            }
+                        });
+                        form.render();
+                    }
+                    else {
+                        layer.msg('页面编辑中不可添加')
+                    }
+                })
+
+
+                //右上角编辑图标
+                $('.edit_icon').click(function () {
+                    layer.msg('点击绿色背景文字修改对应组件')
+                    //切换.edit_div显示隐藏
+                    show = $('.edit_div').css('display')
+                    $('.edit_div').css('display', show == 'none' ? 'block' : 'none')
+                    //切换编辑保存图标
+                    $(this).toggleClass('layui-icon-auz')
+                    $(this).toggleClass('layui-icon-edit');
+
+                    //切换开关是否可点击
+                    // console.log($('input').attr('disabled'))
+                    $('input').attr('disabled') == undefined ? $('input').attr('disabled', 'true') : $('input').removeAttr('disabled');
+
+
+                })
+
+
+                //点击edit_div编辑对应stream
+                $('.edit_div').click(function () {
+                    let id = $(this).attr('db_id')
+                    let db_name = $(this).attr('db_name')
+                    let name = $(this).attr('name')
+                    if (db_name == 'wrqs_sensor') {
+                        layer.msg('更新传感器' + id + name)
+
+                    }
+                    else if (db_name == 'wrqs_switch') {
+                        layer.msg('更新开关' + id + name)
+                    }
+                    console.log($(this).html(), id, db_name, name)
+                })
+
+                // 开发中
+                $('.layui-icon-log,.layui-icon-next').click(function () {
+                    if ($('.edit_div').css('display') === 'none') {
+                        layer.msg('开发中...')
+                    }
+                    else {
+                        layer.msg('页面编辑中此元素不可用')
+                    }
                 })
                 form.render();
-                // 开发中
-                $('.layui-layout-right,.layui-icon-log,.layui-icon-next,.layui-icon-add-circle').click(function () {
-                    layer.msg('开发中...')
-                })
             }
         })
     }
@@ -142,8 +266,12 @@ function getdata(stream_name, high_low) {
         };
         //如果没有该stream_name则stream_id为undefined
         if (stream_id === -1) {
-            console.log("存在非法的控制台未定义的数据流：" + stream_name)
-            layer.msg("存在非法的控制台未定义的数据流：" + stream_name)
+            // console.log("存在非法的控制台未定义的数据流：" + stream_name)
+            // layer.msg("存在非法的控制台未定义的数据流：" + stream_name)
+            $('#' + stream_name).html('<span style="color: red; font-size: 12px;">非法stream</span>')
+            $('#' + stream_name + '+ span').html('')
+            $('#' + stream_name + stream_name).css("color", "red")
+
         }
         else if (stream_id != -1) {
             if (high_low != 3 && (jsonObject.data)[stream_id].current_value == high_low) {

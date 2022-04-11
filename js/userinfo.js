@@ -46,7 +46,8 @@ $('#return').click(function () {
 $('#btn-username').click(function () {
     layer.open({
         type: 1,
-        title: '修改用户名',
+        shadeClose:true,
+        title: '修改用户名', 
         content: $('#update-username').html(),
         success: function (layero, index) {
             // console.log(layero, index);
@@ -71,6 +72,7 @@ $('#btn-username').click(function () {
 $('#btn-password').click(function () {
     layer.open({
         type: 1,
+        shadeClose:true,
         title: '修改密码',
         content: $('#update-password').html(),
         success: function (layero, index) {
@@ -105,10 +107,11 @@ $('#btn-password').click(function () {
         }
     });
 })
-
+ 
 $('#btn-email').click(function () {
     layer.open({
         type: 1,
+        shadeClose:true,
         title: '修改邮箱',
         content: $('#update-email').html(),
         success: function (layero, index) {

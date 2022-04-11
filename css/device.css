@@ -5,7 +5,6 @@ body {
     background-attachment: fixed;
     background-size: 100% auto;
     padding: 15px;
-    color: #fff;
     z-index: -1;
     /* font-family:"宋体" */
 }
@@ -29,8 +28,14 @@ body::before {
     text-align: center;
     /* line-height: 30px; */
     padding-top: 15px;
-    /* color: #fff; */
+    color: #fff;
 }
+
+/* layui-unselect layui-form-radio */
+.layui-form-radio {
+    background-color: rgb(255, 255, 255) !important;
+}
+
 
 .layui-layout-left {
     left: 0;
@@ -59,7 +64,7 @@ body::before {
 .layui-panel {
     background-color: rgba(12, 12, 12, 0.1);
     border-style: none;
-    color: #fff;
+    /* color: #fff; */
     font-size: 15px;
 }
 
@@ -70,6 +75,11 @@ body::before {
     background-color: rgba(12, 12, 12, 0.1);
     /* opacity: 0.5; */
 
+}
+
+.layui-card-body {
+    color: #fff;
+    /* transform: scale(1); */
 }
 
 .layui-icon-log,
@@ -90,9 +100,15 @@ body::before {
     border-bottom: 1px solid rgb(210, 210, 210);
 }
 
-/* .layui-form-item input{
-    background-color: red;
-} */
+.layui-form-item input {
+    /* background-color: red; */
+    margin: 5px 0;
+
+}
+
+.layui-panel {
+    color: #fff;
+}
 
 .layui-panel>div {
     /* background-color: red; */
@@ -102,3 +118,27 @@ body::before {
 p {
     text-align: center;
 }
+
+.layui-layer-page {
+    min-width: 300px;
+}
+
+.layui-layer-page .layui-form-item {
+    padding: 10px 30px;
+    position: relative;
+}
+
+.edit_div {
+    position: absolute;
+    left: 10px;
+    z-index: 999;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #5FB878;
+    color: rgba(12, 12, 12, 1);
+    display: none;
+}
+
+/* #update-sensor-tpl .layui-form-item {
+    border-bottom: none;
+} */

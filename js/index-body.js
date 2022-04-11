@@ -25,9 +25,9 @@ layui.use(['layer', 'laytpl', 'form'], function () {
         , laytpl = layui.laytpl
         , form = layui.form
     $(function () {
-        getUserInfo()
+        getdevice()
     })
-    function getUserInfo() {
+    function getdevice() {
         $.ajax({
             method: 'GET',
             url: '/my/userinfo',

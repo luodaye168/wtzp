@@ -1,5 +1,5 @@
 $(function () {
-
+var user_id = ''
     getUserInfo()
 })
 
@@ -8,10 +8,11 @@ function getUserInfo() {
         method: 'GET',
         url: '/my/userinfo',
         success: function (res) {
-            console.log(res)
+            // console.log(res.data.id)
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败')
             }
+            user_id = res.data.id
             renderAvatar(res.data)
         }
     })
@@ -103,7 +104,35 @@ IframeOnClick.track(document.getElementById("iFrame"), function () {
         // $('.layui-footer').css({ 'left': '0', 'transition': 'left 0.5s' })
     }
 });
-// 开发中
-$('.layui-icon-add-circle').click(function(){
-    layer.msg('开发中...')
+// 添加设备
+$('.add_device').click(function () {
+    layer.open({
+        type: 1,
+        title: '添加设备',
+        shadeClose:true,
+        content: $('#add_device_tpl').html(),
+        success: function (layero, index) {
+            // console.log(layero, index);
+            $('#add_device_form').on('submit', function (e) {
+                e.preventDefault()
+                var data = {
+                    user_id,
+                    owner_id:user_id,
+                    api_key: $('#add_device_form [name=api_key]').val(),
+                    device_id:$('#add_device_form [name=device_id').val(),
+                    device_name:$('#add_device_form [name=device_name]').val()
+                }
+                console.log(data)
+                $.post('/my/insert_device', data, function (res) {
+                    if (res.status !== 0) {
+                        console.log(res.message)
+                        return layer.msg("数据不合法,请确认输入的api_key和device_id与onenet平台是否一致")
+                    }
+                    layer.msg("添加成功")
+                    $('#iFrame').attr('src', $('#iFrame').attr('src'));
+                    layer.closeAll('page');
+                })
+            })
+        }
+    });
 })
