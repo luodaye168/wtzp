@@ -152,11 +152,24 @@
             </div>
             <div class="layui-form-item" style="border-bottom: none;">
                 <!-- <button class="layui-btn layui-btn-danger layui-btn-radius btn-del">删除该组件</button> -->
+                <button type="button" class="layui-btn layui-btn-primary layui-border-red layui-btn-radius btn-del">删除该传感器</button>
                 <button class="layui-btn layui-btn-primary layui-border-blue layui-btn-radius" lay-submit lay-filter="formDemo">确认修改</button>
             </div>
         </form>
     </script>
 
+    <script type="text/html" id="update-switch-tpl">
+        <form class="layui-form" id="new-switch-form">
+            <div class="layui-form-item" style="border-bottom: none;">
+                <input type="text" name="new-switch-name" lay-verify="required" placeholder="新开关名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-item" style="border-bottom: none;">
+                <!-- <button class="layui-btn layui-btn-danger layui-btn-radius btn-del">删除该组件</button> -->
+                <button type="button" class="layui-btn layui-btn-primary layui-border-red layui-btn-radius btn-del">删除该开关</button>
+                <button class="layui-btn layui-btn-primary layui-border-blue layui-btn-radius" lay-submit lay-filter="formDemo">确认修改</button>
+            </div>
+        </form>
+    </script>
 
     <script src="/layui/layui.js"></script>
     <script src="/js/jquery-3.6.0.min.js"></script>

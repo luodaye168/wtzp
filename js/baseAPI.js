@@ -1,5 +1,5 @@
 $.ajaxPrefilter(function (options) {
-    options.url = 'http://192.168.43.174:3007' + options.url //'http://192.168.43.174:3007'
+    options.url = 'http://192.168.0.106:3007' + options.url //'http://192.168.43.174:3007'
     console.log(options.url)
 
     //如果请求url带有 /my/ 则给请求头加上token

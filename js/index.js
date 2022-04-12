@@ -32,9 +32,9 @@ function renderAvatar(user) {
     }
 }
 
-$('#userinfo').click(function () {
-    location.href = './user/user_info.html'
-})
+// $('#userinfo').click(function () {
+//     location.href = './user/user_info.html'
+// })
 
 
 $('#icon-turn').click(function () {
@@ -136,3 +136,7 @@ $('.add_device').click(function () {
         }
     });
 })
+
+$('.ing').click(function () {
+        layer.msg('开发中...')
+    })

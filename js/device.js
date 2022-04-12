@@ -127,7 +127,7 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                                         stream_name: $('#add_switch_form [name=stream_name]').val(),
                                         switch_name: $('#add_switch_form [name=switch_name]').val(),
                                     }
-                                    console.log(data)
+                                    // console.log(data)
                                     $.post('/my/insert_switch', data, function (res) {
                                         if (res.status !== 0) {
                                             console.log(res.message)
@@ -148,22 +148,7 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                 })
 
 
-                //右上角编辑图标
-                $('.edit_icon').click(function () {
-                    layer.msg('点击绿色背景文字修改对应组件')
-                    //切换.edit_div显示隐藏
-                    show = $('.edit_div').css('display')
-                    $('.edit_div').css('display', show == 'none' ? 'block' : 'none')
-                    //切换编辑保存图标
-                    $(this).toggleClass('layui-icon-auz')
-                    $(this).toggleClass('layui-icon-edit');
 
-                    //切换开关是否可点击
-                    // console.log($('input').attr('disabled'))
-                    $('input').attr('disabled') == undefined ? $('input').attr('disabled', 'true') : $('input').removeAttr('disabled');
-
-
-                })
 
 
                 //点击edit_div编辑对应stream
@@ -172,13 +157,108 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                     let db_name = $(this).attr('db_name')
                     let name = $(this).attr('name')
                     if (db_name == 'wrqs_sensor') {
-                        layer.msg('更新传感器' + id + name)
+                        // layer.msg('更新传感器' + id + name)
+                        layer.open({
+                            type: 1,
+                            shadeClose: true,
+                            title: '修改 ' + name + ' 名',
+                            content: $('#update-sensor-tpl').html(),
+                            success: function (layero, index) {
+                                // console.log(layero, index);
+                                $('#new-sensor-form').on('submit', function (e) {
+                                    e.preventDefault()
+                                    var data = {
+                                        sensor_name: $('#new-sensor-form [name=new-sensor-name]').val(),
+                                        id
+                                    }
+                                    // console.log(data)
+                                    $.post('/my/update_sensor', data, function (res) {
+                                        if (res.status !== 0) {
+                                            return layer.msg("更新失败" + res.message)
+                                        }
+                                        layer.msg("更新成功")
+                                        $('.edit_icon').removeClass('layui-icon-auz');
+                                        $('.edit_icon').addClass('layui-icon-edit');
+                                        get_device_page()
+                                        layer.close(index);
+                                    })
+                                })
+
+                                $('.btn-del').click(function () {
+                                    layer.confirm('确认删除' + name + '?', { icon: 3, title: '提示' }, function (index) {
+                                        // console.log('删除' + id)
+                                        $.post('/my/delete_sensor', { id: id }, function (res) {
+                                            if (res.status !== 0) {
+                                                console.log(res.message)
+                                                return layer.msg("删除失败" + res.message)
+                                            }
+                                            get_device_page()
+                                            layer.closeAll(function () {
+                                                layer.msg("删除成功")
+                                                $('.edit_icon').removeClass('layui-icon-auz');
+                                                $('.edit_icon').addClass('layui-icon-edit');
+                                            });
+                                        })
+                                        // layer.close(index);
+                                    });
+                                })
+
+                            }
+                        });
 
                     }
                     else if (db_name == 'wrqs_switch') {
-                        layer.msg('更新开关' + id + name)
+                        // layer.msg('更新开关' + id + name)
+                        layer.open({
+                            type: 1,
+                            shadeClose: true,
+                            title: '修改 ' + name + ' 名',
+                            content: $('#update-switch-tpl').html(),
+                            success: function (layero, index) {
+                                // console.log(layero, index);
+                                $('#new-switch-form').on('submit', function (e) {
+                                    e.preventDefault()
+                                    var data = {
+                                        switch_name: $('#new-switch-form [name=new-switch-name]').val(),
+                                        id
+                                    }
+                                    // console.log(data)
+                                    $.post('/my/update_switch', data, function (res) {
+                                        if (res.status !== 0) {
+                                            return layer.msg("更新失败" + res.message)
+                                        }
+                                        layer.msg("更新成功")
+                                        $('.edit_icon').removeClass('layui-icon-auz');
+                                        $('.edit_icon').addClass('layui-icon-edit');
+                                        get_device_page()
+                                        layer.close(index);
+                                    })
+                                })
+
+                                $('.btn-del').click(function () {
+                                    layer.confirm('确认删除' + name + '?', { icon: 3, title: '提示' }, function (index) {
+                                        // console.log('删除' + id)
+                                        $.post('/my/delete_switch', { id: id }, function (res) {
+                                            if (res.status !== 0) {
+                                                console.log(res.message)
+                                                return layer.msg("删除失败" + res.message)
+                                            }
+                                            get_device_page()
+                                            layer.closeAll(function () {
+                                                layer.msg("删除成功")
+                                                $('.edit_icon').removeClass('layui-icon-auz');
+                                                $('.edit_icon').addClass('layui-icon-edit');
+                                            });
+                                        })
+                                        // layer.close(index);
+                                    });
+                                })
+
+                            }
+                        });
+
                     }
-                    console.log($(this).html(), id, db_name, name)
+                    // console.log($(this).html(), id, db_name, name)
                 })
 
                 // 开发中
@@ -196,6 +276,36 @@ layui.use(['layer', 'laytpl', 'form'], function () {
     }
 
 });
+
+
+
+//右上角编辑图标
+$('.edit_icon').click(function () {
+    // console.log(e)
+    //     console.log('hello')
+    //     layer.msg('点击绿色背景文字修改对应组件')
+    //     //切换.edit_div显示隐藏
+    //     show = $('.edit_div').css('display')
+    //     $('.edit_div').css('display', show == 'none' ? 'block' : 'none')
+    //     //切换编辑保存图标
+    //     $(this).toggleClass('layui-icon-auz')
+    //     $(this).toggleClass('layui-icon-edit');
+    //     //切换开关是否可点击
+    //     // console.log($('input').attr('disabled'))
+    //     $('input').attr('disabled') == undefined ? $('input').attr('disabled', 'true') : $('input').removeAttr('disabled');
+    if ($(this).hasClass('layui-icon-edit')) {
+        layer.msg('点击绿色背景文字修改对应组件')
+        $('.edit_icon').removeClass('layui-icon-edit');
+        $('.edit_icon').addClass('layui-icon-auz');
+        $('.edit_div').css('display', 'block')
+    }
+    else if ($(this).hasClass('layui-icon-auz')) {
+        layer.msg('编辑完成')
+        $('.edit_icon').removeClass('layui-icon-auz');
+        $('.edit_icon').addClass('layui-icon-edit');
+        $('.edit_div').css('display', 'none')
+    }
+})
 
 //定义设备在线标志位
 var live_flag = false
@@ -268,7 +378,7 @@ function getdata(stream_name, high_low) {
         if (stream_id === -1) {
             // console.log("存在非法的控制台未定义的数据流：" + stream_name)
             // layer.msg("存在非法的控制台未定义的数据流：" + stream_name)
-            $('#' + stream_name).html('<span style="color: red; font-size: 12px;">非法stream</span>')
+            $('#' + stream_name).html('<span style="color: red; font-size: 12px;">非法stream !</span>')
             $('#' + stream_name + '+ span').html('')
             $('#' + stream_name + stream_name).css("color", "red")
 
