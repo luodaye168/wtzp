@@ -17,7 +17,7 @@ $.ajaxPrefilter(function (options) {
         if (res.statusText == "error" || res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败,token无效') {
             // alert("请求超时，请重新登录")
             localStorage.removeItem('token')
-            location.href = '/login.html'
+            window.parent.location.href = '/login.html'
         }
     }
 })

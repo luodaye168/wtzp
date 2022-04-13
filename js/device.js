@@ -69,7 +69,10 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                 $('.layui-card-body').on('click', '#btn-add_sensor', function (e) {
                     // $('#btn-add_sensor').click(function () {
                     // layer.msg('添加传感器')
-                    if ($('.edit_div').css('display') === 'none') {
+                    if ($('.edit_div').css('display') === 'block') {
+                        layer.msg('页面编辑中不可添加')
+                    }
+                    else {
                         layer.open({
                             type: 1,
                             title: '添加传感器',
@@ -100,15 +103,15 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                             }
                         });
                     }
-                    else {
-                        layer.msg('页面编辑中不可添加')
-                    }
                 })
 
                 $('.layui-card-body').on('click', '#btn-add_switch', function (e) {
                     // $('#btn-add_switch').click(function () {
                     // layer.msg('添加开关')
-                    if ($('.edit_div').css('display') === 'none') {
+                    if ($('.edit_div').css('display') === 'block') {
+                        layer.msg('页面编辑中不可添加')
+                    }
+                    else {
                         layer.open({
                             type: 1,
                             title: '添加开关',
@@ -141,9 +144,6 @@ layui.use(['layer', 'laytpl', 'form'], function () {
                             }
                         });
                         form.render();
-                    }
-                    else {
-                        layer.msg('页面编辑中不可添加')
                     }
                 })
 
