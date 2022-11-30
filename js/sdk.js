@@ -1,7 +1,7 @@
 
 (function(){
     var count = 1;
-    var API_HOST = 'http://open.iot.10086.cn';
+    var API_HOST = 'https://open.iot.10086.cn';
     function noop(){}
     function jsonp(url, opts, fn){
         if ('function' == typeof opts) {
