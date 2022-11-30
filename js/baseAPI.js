@@ -1,5 +1,5 @@
 $.ajaxPrefilter(function (options) {
-    options.url = 'https://wtzp-1785246-1310835343.ap-shanghai.run.tcloudbase.com' + options.url //'http://192.168.43.174:3007'
+    options.url = 'https://bishe-node-21141-6-1310835343.sh.run.tcloudbase.com' + options.url //'http://192.168.43.174:3007'
     console.log(options.url)
 
     //如果请求url带有 /my/ 则给请求头加上token
